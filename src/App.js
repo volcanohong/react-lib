@@ -1,24 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import OmButton from './component/OmButton';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="">
+      <header className="om-bg-blue-200">
+        Component
       </header>
+      <span  className="om-bg-red-200">123</span>
+      <div>
+        <OmButton name="Omega Button Test" onClick={function() { console.log('out click'); }}/>
+      </div>
     </div>
   );
 }
