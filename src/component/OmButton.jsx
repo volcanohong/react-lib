@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function OmButton(props) {
+function OmButton(props) {
   const classes = useStyles();
   const variant = props.variant ? props.variant : "outlined";
   const color = props.color ? props.color : "primary"
@@ -33,3 +33,5 @@ export default function OmButton(props) {
     </div>
   );
 }
+
+export default React.memo(OmButton);
