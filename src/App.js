@@ -1,6 +1,7 @@
 import React from 'react';
-import OmButton from './component/OmButton';
 import { makeStyles } from '@material-ui/core/styles';
+import OmButton from './component/OmButton';
+import OmSelect from './component/OmSelect';
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -16,35 +17,59 @@ function App() {
   return (
     <div className="">
       <header className="om-p-5 om-text-lg">CORE5 Componet Lib</header>
-      <div className="om-container om-mx-auto om-px-4">
+
+      {/* <div className="om-container om-mx-auto om-px-4">
         <div className="om-w-full om-py-5 om-px-2">
+          <span>Omega Selects</span>
+        </div>
+        <div className="om-flex om-flex-row om-space-x-6">
+          <OmSelect></OmSelect>
+        </div>
+      </div> */}
+
+      <div className="om-container om-mx-auto om-px-4 om-space-y-8">
+        <div className="om-w-full">
           <span>Omega Buttons</span>
         </div>
-        <div className="om-flex om-flex-row">
-          <OmButton className="om-px-2 om-py-4" name="Primary" onClick={function () { console.log('out click'); }} />
-          <OmButton className="om-px-2 om-py-4" name="Secondary" color="secondary" />
-          <OmButton className="om-px-2 om-py-4" name="Default" color="default" />
-          <OmButton className="om-px-2 om-py-4" name="Disabled" disabled />
-          {/* <input accept="image/*" className="om-hidden" type="file" id="btn-file-upload"/>
-          <lable htmlFor="btn-file-upload">
-            <OmButton className="om-px-2 om-py-4" name="Upload" color="primary" component="span" />
-          </lable> */}
+        <div className="om-flex om-flex-row om-space-x-6">
+          <span>Style 1: Rounded</span>
+          <OmButton name="Primary" onClick={function () { console.log('out click'); }} />
+          <OmButton name="Secondary" color="secondary" />
+          <OmButton name="Default" color="default" />
+          <OmButton name="Disabled" disabled />
         </div>
-        <div className="om-flex om-flex-row">
-          <OmButton className="om-px-2 om-py-4" name="Outlined" variant="outlined" />
-          <OmButton className="om-px-2 om-py-4" name="Contained" variant="contained" />
-          <OmButton className="om-px-2 om-py-4" name="Text" variant="text" />
+        <div className="om-flex om-flex-row om-space-x-6">
+          <span>Style 2: Square</span>
+          <OmButton name="Primary" square="true" />
+          <OmButton name="Secondary" square="true" color="secondary" />
+          <OmButton name="Default" square="true" color="default" />
+          <OmButton name="Disabled" square="true" disabled />
         </div>
-        <div className="om-flex om-flex-row">
-          <OmButton className="om-px-2 om-py-4" name="Small" size="small" />
-          <OmButton className="om-px-2 om-py-4" name="Medium" size="medium" />
-          <OmButton className="om-px-2 om-py-4" name="Large" size="large" />
+        <div className="om-flex om-flex-row om-space-x-6">
+          <span>Variant</span>
+          <OmButton name="Outlined" square="true" variant="outlined" />
+          <OmButton name="Contained" square="true" variant="contained" />
+          <OmButton name="Text" square="true" variant="text" />
         </div>
-        <div className="om-flex om-flex-row">
-          <OmButton className="om-px-2 om-py-4" icon="true" name="toc" color="default"/>
-          <OmButton className="om-px-2 om-py-4" icon="true" name="schedule" />
-          <OmButton className="om-px-2 om-py-4" icon="true" name="favorite" color="secondary"/>
-          <OmButton className="om-px-2 om-py-4" icon="true" name="delete" disabled/>
+        <div className="om-flex om-flex-row om-space-x-6">
+          <span>Size</span>
+          <OmButton name="Small" size="small" />
+          <OmButton name="Medium" size="medium" />
+          <OmButton name="Large" size="large" />
+        </div>
+        <div className="om-flex om-flex-row om-space-x-6">
+          <span>Icon Button</span>
+          <OmButton icon="true" name="toc" color="default" />
+          <OmButton icon="true" name="schedule" />
+          <OmButton icon="true" name="favorite" color="secondary" />
+          <OmButton icon="true" name="delete" disabled />
+        </div>
+        <div className="om-flex om-flex-row om-space-x-6">
+          <span>Icon Button - Fab</span>
+          <OmButton fab="true" name="toc" color="default" />
+          <OmButton fab="true" name="schedule" />
+          <OmButton fab="true" name="favorite" color="secondary" />
+          <OmButton fab="true" name="delete" disabled />
         </div>
       </div>
     </div>
