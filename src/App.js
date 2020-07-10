@@ -29,29 +29,79 @@ function App() {
     }
   });
 
-  const options = [
-    { value: 10, name: 'Option 10' },
-    { value: 20, name: 'Option 20' },
-    { value: 30, name: 'Option 30' },
-    { value: 40, name: 'Option 40' },
+  const optionsArray = [
+    'Option X',
+    'Option Y',
+    'Option 1',
+    'Option 2',
+    'Option 3'
   ]
+
+  const optionsObject = [
+    { id: 1, name: 'Option 10' },
+    { id: 2, name: 'Option 20' },
+    { id: 3, name: 'Option 30' },
+    { id: 4, name: 'Option 40' },
+    { id: 5, name: 'Xy 50' },
+    { id: 6, name: 'Xy 60' },
+  ]
+
+  const [value1, setValue1] = React.useState(optionsArray[0]);
+  const [value2, setValue2] = React.useState(null);
 
   return (
     <MuiThemeProvider theme={theme}>
       <div className="">
         <header className="om-p-5 om-text-lg">CORE5 Componet Lib</header>
 
-        <div className="om-container om-mx-auto om-px-4 om-space-y-8">
+        <div className="om-container om-mx-auto om-px-4 om-space-y-20">
           <div className="om-w-full">
             <span>Omega Single Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmSingleSelect options={options}></OmSingleSelect>
+            <span className="om-px-r-2">Label: </span>
+            <OmSingleSelect
+              options={optionsArray}
+              value={value1}
+              onChange={(event, value) => {
+                setValue1(value);
+              }}
+            >
+            </OmSingleSelect>
+            <div>{`Selected value: ${value1 ? `${value1}` : 'null'}`}</div>
           </div>
-
-          <div className="om-flex om-flex-row om-space-x-10">
-
+          <div className="om-flex om-flex-row om-space-x-6">
+            <span className="om-px-r-2">Label: </span>
+            <OmSingleSelect
+              options={optionsObject}
+              field="name"
+              value={value2}
+              onChange={(event, value) => {
+                setValue2(value);
+              }}
+              placeholder="Placeholder"
+            >
+            </OmSingleSelect>
+            <div>{`Selected object: ${value2 ? `${JSON.stringify(value2)}` : 'null'}`}</div>
           </div>
+          <div className="om-flex om-flex-row om-space-x-6">
+            <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250" ></OmSingleSelect>
+          </div>
+        </div>
+
+        <div className="om-flex om-flex-row om-my-10">
+        </div>
+
+        <div className="om-container om-mx-auto om-px-4 om-space-y-20">
+          <div className="om-w-full">
+            <span>Omega Multi-Select</span>
+          </div>
+          <div className="om-flex om-flex-row om-space-x-6">
+            {/* <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250" multiple></OmSingleSelect> */}
+          </div>
+        </div>
+
+        <div className="om-flex om-flex-row om-my-20">
         </div>
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-8">

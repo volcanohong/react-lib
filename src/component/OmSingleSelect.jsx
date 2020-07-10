@@ -11,61 +11,46 @@ const useStyles = makeStyles({
   },
   option: {
     fontSize: 15,
-  },
-  select: {
     minWidth: 250,
   },
+  // select: {
+  //   minWidth: 250,
+  // },
 });
 
 function OmSingleSelect(props) {
   const classes = useStyles();
-  const [selected, setValue] = React.useState('');
+  const { lable, options, width, field, placeholder, ...others } = props;
+  // const minWidth = width ? width : 200; // now working
+  const minWidth = 200;
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  // console.log(value);
 
-  // console.log(props.options);
-
-  const renderOptions = (props) => {
-    return props.options.map((item, i) => {
-      return (
-        <MenuItem
-          key={i}
-          value={item.value}>
-          {item.name}
-        </MenuItem>
-      );
-    });
-  };
+  //array of objects can cause unmatch of value and option, which generates lots of warnings
+  const handleObjectMatch = (opt, val) => {
+    if (field) {
+      return opt[field] === val[field];
+    }
+    return opt === val;
+  }
 
   return (
     <div className={props.className}>
       <Autocomplete
-        id="om-single-select"
-        options={props.options}
-        className={classes.select}
-        classes={{
-          option: classes.option,
-        }}
+        options={options}
+        getOptionLabel={(option) => field ? option[field] : option}
+        getOptionSelected={handleObjectMatch}
+        style={{ width: minWidth }}
         autoHighlight
-        getOptionLabel={(option) => option.name}
-        renderOption={(option) => (
-          <React.Fragment>
-            {option.name}
-          </React.Fragment>
-        )}
+        // multiple
         renderInput={(params) => (
           <TextField
             {...params}
-            label="Choose one"
-            variant="outlined"
-            inputProps={{
-              ...params.inputProps,
-              autoComplete: 'new-password', // disable autocomplete and autofill
-            }}
+            label={lable}
+            placeholder={placeholder}
           />
         )}
+        {...others}
       />
     </div>
   );
