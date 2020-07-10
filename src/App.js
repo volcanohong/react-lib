@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles, MuiThemeProvider, unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
 import OmButton from './component/OmButton';
-import OmSelect from './component/OmSelect';
+import OmSingleSelect from './component/OmSingleSelect';
 
 //Warnings in strict mode https://github.com/mui-org/material-ui/issues/13394
 //unstable_createMuiStrictModeTheme as createMuiTheme
@@ -43,10 +43,10 @@ function App() {
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-8">
           <div className="om-w-full">
-            <span>Omega Selects</span>
+            <span>Omega Single Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmSelect options={options}></OmSelect>
+            <OmSingleSelect options={options}></OmSingleSelect>
           </div>
 
           <div className="om-flex om-flex-row om-space-x-10">
