@@ -7,13 +7,7 @@ const useStyles = makeStyles({
     "&:focus": {
       outline: "none",
     },
-  },
-  rootIcon: {
-    "&:focus": {
-      outline: "none",
-      border: 2,
-    },
-  },
+  }
 });
 
 function OmButton(props) {
@@ -28,7 +22,7 @@ function OmButton(props) {
     return (
       <div className={props.className}>
         <IconButton
-          classes={{ root: classes.rootIcon }}
+          classes={{ root: classes.root }}
           color={color}
           {...props}
         >
@@ -42,7 +36,7 @@ function OmButton(props) {
     return (
       <div className={props.className}>
         <Fab
-          classes={{ root: classes.rootIcon }}
+          classes={{ root: classes.root }}
           color={color}
           {...props}>
           <i className="material-icons">{props.name}</i>

@@ -9,21 +9,17 @@ const useStyles = makeStyles({
       outline: 'none',
     },
   },
-  option: {
+  select: {
     fontSize: 15,
     minWidth: 250,
   },
-  // select: {
-  //   minWidth: 250,
-  // },
 });
 
 function OmSingleSelect(props) {
   const classes = useStyles();
   const { lable, options, width, field, placeholder, ...others } = props;
   // const minWidth = width ? width : 200; // now working
-  const minWidth = 200;
-
+  let minWidth = 200;
   // console.log(value);
 
   //array of objects can cause unmatch of value and option, which generates lots of warnings
@@ -42,6 +38,8 @@ function OmSingleSelect(props) {
         getOptionSelected={handleObjectMatch}
         style={{ width: minWidth }}
         autoHighlight
+        autoComplete
+        autoSelect
         // multiple
         renderInput={(params) => (
           <TextField

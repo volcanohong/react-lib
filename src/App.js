@@ -30,20 +30,18 @@ function App() {
   });
 
   const optionsArray = [
-    'Option X',
-    'Option Y',
     'Option 1',
     'Option 2',
-    'Option 3'
+    'Option 3',
+    'XXX',
+    'YYY'
   ]
 
   const optionsObject = [
     { id: 1, name: 'Option 10' },
     { id: 2, name: 'Option 20' },
     { id: 3, name: 'Option 30' },
-    { id: 4, name: 'Option 40' },
-    { id: 5, name: 'Xy 50' },
-    { id: 6, name: 'Xy 60' },
+    { id: 4, name: 'Option 40' }
   ]
 
   const [value1, setValue1] = React.useState(optionsArray[0]);
@@ -59,10 +57,8 @@ function App() {
             <span>Omega Single Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <span className="om-px-r-2">Label: </span>
-            <OmSingleSelect
-              options={optionsArray}
-              value={value1}
+            <span className="om-px-r-2">Select in Array: </span>
+            <OmSingleSelect options={optionsArray} value={value1}
               onChange={(event, value) => {
                 setValue1(value);
               }}
@@ -71,7 +67,7 @@ function App() {
             <div>{`Selected value: ${value1 ? `${value1}` : 'null'}`}</div>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <span className="om-px-r-2">Label: </span>
+            <span className="om-px-r-2">Select in Array of Objects: </span>
             <OmSingleSelect
               options={optionsObject}
               field="name"
@@ -85,21 +81,21 @@ function App() {
             <div>{`Selected object: ${value2 ? `${JSON.stringify(value2)}` : 'null'}`}</div>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250" ></OmSingleSelect>
+            <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250"></OmSingleSelect>
           </div>
         </div>
 
         <div className="om-flex om-flex-row om-my-10">
         </div>
 
-        <div className="om-container om-mx-auto om-px-4 om-space-y-20">
+        {/* <div className="om-container om-mx-auto om-px-4 om-space-y-20">
           <div className="om-w-full">
             <span>Omega Multi-Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            {/* <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250" multiple></OmSingleSelect> */}
+            <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250" multiple></OmSingleSelect>
           </div>
-        </div>
+        </div> */}
 
         <div className="om-flex om-flex-row om-my-20">
         </div>
