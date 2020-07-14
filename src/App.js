@@ -1,7 +1,9 @@
 import React from 'react';
 import { makeStyles, MuiThemeProvider, unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
 import OmButton from './component/OmButton';
+import OmCheckbox from './component/OmCheckbox';
 import OmSingleSelect from './component/OmSingleSelect';
+import OmMultiSelect from './component/OmMultiSelect';
 
 //Warnings in strict mode https://github.com/mui-org/material-ui/issues/13394
 //unstable_createMuiStrictModeTheme as createMuiTheme
@@ -44,13 +46,48 @@ function App() {
     { id: 4, name: 'Option 40' }
   ]
 
+  const optionsObjectAll = [
+    { id: 0, name: 'All' },
+    { id: 1, name: 'Option 10' },
+    { id: 2, name: 'Option 20' },
+    { id: 3, name: 'Option 30' },
+    { id: 4, name: 'Option 40' }
+  ]
+
   const [value1, setValue1] = React.useState(optionsArray[0]);
   const [value2, setValue2] = React.useState(null);
+
+
+  const [checked, setChecked] = React.useState(true);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   return (
     <MuiThemeProvider theme={theme}>
       <div className="">
         <header className="om-p-5 om-text-lg">CORE5 Componet Lib</header>
+
+        <div className="om-container om-mx-auto om-px-4 om-space-y-10">
+          <div className="om-w-full">
+            <span>Omega Checkbox</span>
+          </div>
+          <div className="om-flex om-flex-row">
+            <OmCheckbox checked={checked} onChange={handleChange}></OmCheckbox> <span className="om-mt-2 om-pr-4">primary</span>
+            <OmCheckbox checked color='secondary'></OmCheckbox> <span className="om-mt-2 om-pr-4">secondary</span>
+            <OmCheckbox checked color='default'></OmCheckbox> <span className="om-mt-2 om-pr-4">default</span>
+            <OmCheckbox disabled></OmCheckbox><span className="om-mt-2 om-pr-4">disabled</span>
+          </div>
+          <div className="om-flex om-flex-row">
+            <OmCheckbox size='small' /> <span className="om-mt-3 om-pr-4">small</span>
+            <OmCheckbox size='default' /><span className="om-mt-3 om-pr-4">default</span>
+            <OmCheckbox size='large' /><span className="om-mt-3 om-pr-4">large</span>
+          </div>
+        </div>
+
+        <div className="om-flex om-flex-row om-my-10">
+        </div>
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-20">
           <div className="om-w-full">
@@ -88,14 +125,14 @@ function App() {
         <div className="om-flex om-flex-row om-my-10">
         </div>
 
-        {/* <div className="om-container om-mx-auto om-px-4 om-space-y-20">
+        <div className="om-container om-mx-auto om-px-4 om-space-y-20">
           <div className="om-w-full">
             <span>Omega Multi-Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250" multiple></OmSingleSelect>
+            <OmMultiSelect lable="Lable: Select" options={optionsObjectAll}></OmMultiSelect>
           </div>
-        </div> */}
+        </div>
 
         <div className="om-flex om-flex-row om-my-20">
         </div>

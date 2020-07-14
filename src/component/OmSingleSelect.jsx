@@ -18,10 +18,8 @@ const useStyles = makeStyles({
 function OmSingleSelect(props) {
   const classes = useStyles();
   const { lable, options, width, field, placeholder, ...others } = props;
-  // const minWidth = width ? width : 200; // now working
+  // note: const minWidth = width ? width : 200; // now working
   let minWidth = 200;
-  // console.log(value);
-
   //array of objects can cause unmatch of value and option, which generates lots of warnings
   const handleObjectMatch = (opt, val) => {
     if (field) {
@@ -40,7 +38,6 @@ function OmSingleSelect(props) {
         autoHighlight
         autoComplete
         autoSelect
-        // multiple
         renderInput={(params) => (
           <TextField
             {...params}
