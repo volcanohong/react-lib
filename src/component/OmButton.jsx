@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, IconButton, Fab } from "@material-ui/core";
 
@@ -12,52 +13,68 @@ const useStyles = makeStyles({
 
 function OmButton(props) {
   const classes = useStyles();
-  const variant = props.variant ? props.variant : "outlined"; // outlined | contained | text
-  const color = props.color ? props.color : "primary"; // primary | secondary | default
-  const styleBorderRadius = props.square ? 0 : 8; // square | rounded
-  const isIcon = props.icon;
-  const isFab = props.fab;
-
-  if (isIcon) {
+  const { className, name, color, variant, size, icon, fab, square, ...others } = props;
+  const styleBorderRadius = square ? 0 : 8; // square | rounded
+  if (icon) {
     return (
-      <div className={props.className}>
+      <div className={className}>
         <IconButton
           classes={{ root: classes.root }}
           color={color}
-          {...props}
+          {...others}
         >
-          <i className="material-icons">{props.name}</i>
+          <i className="material-icons">{name}</i>
         </IconButton>
       </div>
     );
   }
 
-  if (isFab) {
+  if (fab) {
     return (
-      <div className={props.className}>
+      <div className={className}>
         <Fab
           classes={{ root: classes.root }}
           color={color}
-          {...props}>
-          <i className="material-icons">{props.name}</i>
+          {...others}>
+          <i className="material-icons">{name}</i>
         </Fab>
       </div>
     );
   }
 
   return (
-    <div className={props.className}>
+    <div className={className}>
       <Button
         classes={{ root: classes.root }}
         style={{ borderRadius: styleBorderRadius }}
         variant={variant}
         color={color}
-        {...props}
+        {...others}
       >
-        {props.name}
+        {name}
       </Button>
     </div>
   );
 }
+
+OmButton.propTypes = {
+  name: PropTypes.string,
+  className: PropTypes.string,
+  variant: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.string,
+  square: PropTypes.bool,
+  diabled: PropTypes.bool,
+  icon: PropTypes.bool,
+  fab: PropTypes.bool
+};
+
+OmButton.defaultProps = {
+  variant: 'outlined', // outlined | contained | text
+  color: 'primary', // primary | secondary | default
+  square: false,
+  icon: false,
+  fab: false
+};
 
 export default React.memo(OmButton);

@@ -5,6 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import Checkbox from '@material-ui/core/Checkbox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import OmCheckbox from './OmCheckbox';
 
 const useStyles = makeStyles({
   root: {
@@ -22,7 +23,7 @@ function OmMultiSelect(props) {
   const classes = useStyles();
   const { lable, options, width, field, placeholder, ...others } = props;
   // const minWidth = width ? width : 200; // now working
-  let minWidth = 200;
+  let minWidth = 300;
   // console.log(value);
 
   //array of objects can cause unmatch of value and option, which generates lots of warnings
@@ -42,38 +43,38 @@ function OmMultiSelect(props) {
       <Autocomplete
         multiple
         disableCloseOnSelect
-        limitTags={1}
+        limitTags={0}
         options={options}
         getOptionLabel={(option) => field ? option[field] : option}
         getOptionSelected={handleObjectMatch}
         style={{ width: minWidth }}
-        autoHighlight
-        autoComplete
-        autoSelect
-        // renderOption={(option, state) => {
-        //   // const idx = selectedValue.findIndex(
-        //   //   opt => opt[field].toLowerCase() === 'All' || opt.toLowerCase === 'All'
-        //   // );
-        //   // if (idx > -1) {
-        //   //   state.selected = true;
-        //   // }
-        //   return (
-        //     <React.Fragment>
-        //       <Checkbox
-        //         // icon={icon}
-        //         // checkedIcon={checkedIcon}
-        //         style={{ marginRight: 8 }}
-        //         checked={state.selected}
-        //       />
-        //       {field ? option[field] : option}
-        //     </React.Fragment>
-        //   );
-        // }}
+        ListboxProps={{ style: { maxHeight: 250, overflow: 'auto' } }}
+        // autoHighlight
+        // autoComplete
+        // autoSelect
+        renderOption={(option, state) => {
+          const idx = selectedValue.findIndex(
+            opt => opt[field].toLowerCase() === 'All' || opt.toLowerCase === 'All'
+          );
+          if (idx > -1) {
+            state.selected = true;
+          }
+          return (
+            <React.Fragment>
+              <OmCheckbox
+                style={{ marginLeft: 0, paddingLeft: 0, color: 'grey' }}
+                checked={state.selected}
+              />
+              <span style={{ color: 'grey' }}>{field ? option[field] : option}</span>
+            </React.Fragment>
+          );
+        }}
         renderInput={(params) => (
           <TextField
-            {...params}
+            style={{ maxHeight: 50 }}
             label={lable}
             placeholder={placeholder}
+            {...params}
           />
         )}
         {...others}

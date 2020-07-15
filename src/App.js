@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, MuiThemeProvider, unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
 import OmButton from './component/OmButton';
 import OmCheckbox from './component/OmCheckbox';
 import OmSingleSelect from './component/OmSingleSelect';
@@ -8,17 +8,7 @@ import OmMultiSelect from './component/OmMultiSelect';
 //Warnings in strict mode https://github.com/mui-org/material-ui/issues/13394
 //unstable_createMuiStrictModeTheme as createMuiTheme
 
-const useStyles = makeStyles((theme) => ({
-  margin: {
-    margin: theme.spacing(1),
-  },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
-  },
-}));
-
 function App() {
-  const classes = useStyles();
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -35,8 +25,12 @@ function App() {
     'Option 1',
     'Option 2',
     'Option 3',
+    'Option 4',
+    'Option 5',
+    'Option 6',
     'XXX',
-    'YYY'
+    'YYY',
+    'ZZZ'
   ]
 
   const optionsObject = [
@@ -69,21 +63,33 @@ function App() {
       <div className="">
         <header className="om-p-5 om-text-lg">CORE5 Componet Lib</header>
 
+        <div className="om-container om-mx-auto om-px-4 om-space-y-20">
+          <div className="om-w-full">
+            <span>Omega Multi-Select</span>
+          </div>
+          <div className="om-flex om-flex-row om-space-x-6">
+            <OmMultiSelect lable="Lable: Select" options={optionsObjectAll} field='name'></OmMultiSelect>
+          </div>
+        </div>
+
+        <div className="om-flex om-flex-row om-my-20">
+        </div>
+
         <div className="om-container om-mx-auto om-px-4 om-space-y-10">
           <div className="om-w-full">
             <span>Omega Checkbox</span>
           </div>
           <div className="om-flex om-flex-row">
-            <OmCheckbox checked={checked} onChange={handleChange}></OmCheckbox> <span className="om-mt-2 om-pr-4">primary</span>
+            <OmCheckbox checked={checked} onChange={handleChange}></OmCheckbox> <span className="om-mt-2 om-pr-4">primary: {`${checked}`}</span>
             <OmCheckbox checked color='secondary'></OmCheckbox> <span className="om-mt-2 om-pr-4">secondary</span>
             <OmCheckbox checked color='default'></OmCheckbox> <span className="om-mt-2 om-pr-4">default</span>
             <OmCheckbox disabled></OmCheckbox><span className="om-mt-2 om-pr-4">disabled</span>
           </div>
-          <div className="om-flex om-flex-row">
-            <OmCheckbox size='small' /> <span className="om-mt-3 om-pr-4">small</span>
-            <OmCheckbox size='default' /><span className="om-mt-3 om-pr-4">default</span>
-            <OmCheckbox size='large' /><span className="om-mt-3 om-pr-4">large</span>
-          </div>
+          {/* <div className="om-flex om-flex-row">
+            <OmCheckbox size='small' /> <span className="om-mt-2 om-pr-4">small</span>
+            <OmCheckbox size='default' /><span className="om-mt-2 om-pr-4">default</span>
+            <OmCheckbox size='large' /><span className="om-mt-2 om-pr-4">large</span>
+          </div> */}
         </div>
 
         <div className="om-flex om-flex-row om-my-10">
@@ -118,19 +124,7 @@ function App() {
             <div>{`Selected object: ${value2 ? `${JSON.stringify(value2)}` : 'null'}`}</div>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmSingleSelect lable="Lable: Select" options={optionsArray} width="250"></OmSingleSelect>
-          </div>
-        </div>
-
-        <div className="om-flex om-flex-row om-my-10">
-        </div>
-
-        <div className="om-container om-mx-auto om-px-4 om-space-y-20">
-          <div className="om-w-full">
-            <span>Omega Multi-Select</span>
-          </div>
-          <div className="om-flex om-flex-row om-space-x-6">
-            <OmMultiSelect lable="Lable: Select" options={optionsObjectAll}></OmMultiSelect>
+            <OmSingleSelect lable="Lable: Select" options={optionsArray} width={250}></OmSingleSelect>
           </div>
         </div>
 
@@ -150,16 +144,16 @@ function App() {
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span>Style 2: Square</span>
-            <OmButton name="Primary" square="true" />
-            <OmButton name="Secondary" square="true" color="secondary" />
-            <OmButton name="Default" square="true" color="default" />
-            <OmButton name="Disabled" square="true" disabled />
+            <OmButton name="Primary" square={true} />
+            <OmButton name="Secondary" square={true} color="secondary" />
+            <OmButton name="Default" square={true} color="default" />
+            <OmButton name="Disabled" square={true} disabled />
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span>Variant</span>
-            <OmButton name="Outlined" square="true" variant="outlined" />
-            <OmButton name="Contained" square="true" variant="contained" />
-            <OmButton name="Text" square="true" variant="text" />
+            <OmButton name="Outlined" square={true} variant="outlined" />
+            <OmButton name="Contained" square={true} variant="contained" />
+            <OmButton name="Text" square={true} variant="text" />
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span>Size</span>
@@ -169,21 +163,21 @@ function App() {
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span>Icon Button</span>
-            <OmButton icon="true" name="toc" color="default" />
-            <OmButton icon="true" name="schedule" />
-            <OmButton icon="true" name="favorite" color="secondary" />
-            <OmButton icon="true" name="delete" disabled />
+            <OmButton icon={true} name="toc" color="default" />
+            <OmButton icon={true} name="schedule" />
+            <OmButton icon={true} name="favorite" color="secondary" />
+            <OmButton icon={true} name="delete" disabled />
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span>Icon Button - Fab</span>
-            <OmButton fab="true" name="toc" />
-            <OmButton fab="true" name="schedule" />
-            <OmButton fab="true" name="favorite" color="secondary" />
-            <OmButton fab="true" name="delete" disabled />
+            <OmButton fab={true} name="toc" />
+            <OmButton fab={true} name="schedule" />
+            <OmButton fab={true} name="favorite" color="secondary" />
+            <OmButton fab={true} name="delete" disabled />
           </div>
         </div>
       </div>
-    </MuiThemeProvider>
+    </MuiThemeProvider >
   );
 }
 
