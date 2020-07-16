@@ -9,28 +9,24 @@ const useStyles = makeStyles({
     '&:focus': {
       outline: 'none',
     }
-  },
-  listboxProp: {
-    maxHeight: 200,
-    overflow: 'auto',
-    boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
   }
 });
 
 function OmSingleSelect(props) {
   const classes = useStyles();
-  const { lable, options, width, field, placeholder, ...others } = props;
-
+  const { className, lable, options, value, sortingKey, field, width, placeholder, ...others } = props;
+  // const defValue = value ? value : getDefValue(options, sortingKey);
+  const defValue = value;
   //Note: array of objects can cause unmatch between value and option, and show a lot of warnings
   const handleObjectMatch = (opt, val) => {
     if (field) {
       return opt[field] === val[field];
     }
     return opt === val;
-  }
+  };
 
   return (
-    <div className={props.className}>
+    <div className={className}>
       <Autocomplete
         options={options}
         getOptionLabel={(option) => field ? option[field] : option}
@@ -39,8 +35,13 @@ function OmSingleSelect(props) {
         autoHighlight
         autoComplete
         autoSelect
+        value={defValue}
         ListboxProps={{
-          classes: { root: classes.listboxProp }
+          style: {
+            maxHeight: 200,
+            overflow: 'auto',
+            boxShadow: '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)'
+          }
         }}
         renderOption={(option) => {
           return (
@@ -63,12 +64,23 @@ function OmSingleSelect(props) {
   );
 }
 
+function getDefValue(options, key) {
+  if (!options.length) {
+    return null;
+  }
+  if (!!key) {
+    options.sort((a, b) => (a[key] > b[key]) ? 1 : -1);
+  }
+  return options[0];
+}
+
 OmSingleSelect.propTypes = {
   lable: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
   options: PropTypes.array,
-  field: PropTypes.string,
+  sortingKey: PropTypes.string, // sortingKey: field for sorting, 
+  field: PropTypes.string, //field: field for display
   width: PropTypes.number,
   diabled: PropTypes.bool
 };

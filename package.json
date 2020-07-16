@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-import": "^2.22.0",
     "tailwindcss": "^1.4.6"
   }
 }

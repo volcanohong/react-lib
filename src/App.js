@@ -31,32 +31,26 @@ function App() {
     'XXX',
     'YYY',
     'ZZZ'
-  ]
+  ];
 
   const optionsObject = [
-    { id: 1, name: 'Option 10' },
-    { id: 2, name: 'Option 20' },
+    { id: 2, name: 'Option 10' },
+    { id: 1, name: 'Option 20' },
     { id: 3, name: 'Option 30' },
     { id: 4, name: 'Option 40' }
-  ]
-
-  const optionsObjectAll = [
-    { id: 0, name: 'All' },
-    { id: 1, name: 'Option 10' },
-    { id: 2, name: 'Option 20' },
-    { id: 3, name: 'Option 30' },
-    { id: 4, name: 'Option 40' }
-  ]
+  ];
 
   const [value1, setValue1] = React.useState(optionsArray[0]);
   const [value2, setValue2] = React.useState(null);
-
+  const [value3, setValue3] = React.useState(optionsArray.slice(6));
+  const [value4, setValue4] = React.useState([]);
 
   const [checked, setChecked] = React.useState(true);
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
 
   return (
     <MuiThemeProvider theme={theme}>
@@ -65,11 +59,28 @@ function App() {
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-20">
           <div className="om-w-full">
-            <span>Omega Multi-Select</span>
+            <span className="om-bg-gray-300 om-p-1">Omega Multi-Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmMultiSelect lable="Lable: Select" options={optionsObjectAll} field='name'></OmMultiSelect>
+            <OmMultiSelect lable="Lable: Select" options={optionsObject} field='name'></OmMultiSelect>
           </div>
+          <div className="om-flex om-flex-row om-space-x-6">
+            <OmMultiSelect lable="Lable: Select" options={optionsArray} showTags={false}></OmMultiSelect>
+          </div>
+          <div className="om-flex om-flex-row om-space-x-6">
+            <OmMultiSelect lable="Lable: Select" options={optionsArray} value={value3}
+              onChange={(event, values) => {
+                setValue3(values);
+                console.log(values);
+              }} showTags={false}></OmMultiSelect>
+          </div><div>{`Selected value: ${value3 ? `${value3}` : 'null'}`}</div>
+          <div className="om-flex om-flex-row om-space-x-6">
+            <OmMultiSelect lable="Lable: Select" options={optionsObject} value={value4} field='name'
+              onChange={(event, values) => {
+                setValue4(values);
+                console.log(values);
+              }} showTags={false}></OmMultiSelect>
+          </div><div>{`Selected value: ${value4 ? `${value4}` : 'null'}`}</div>
         </div>
 
         <div className="om-flex om-flex-row om-my-20">
@@ -77,7 +88,7 @@ function App() {
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-10">
           <div className="om-w-full">
-            <span>Omega Checkbox</span>
+            <span className="om-bg-gray-300 om-p-1">Omega Checkbox</span>
           </div>
           <div className="om-flex om-flex-row">
             <OmCheckbox checked={checked} onChange={handleChange}></OmCheckbox> <span className="om-mt-2 om-pr-4">primary: {`${checked}`}</span>
@@ -97,7 +108,7 @@ function App() {
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-20">
           <div className="om-w-full">
-            <span>Omega Single Select</span>
+            <span className="om-bg-gray-300 om-p-1">Omega Single Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span className="om-px-r-2">Select in Array: </span>
@@ -113,8 +124,9 @@ function App() {
             <span className="om-px-r-2">Select in Array of Objects: </span>
             <OmSingleSelect
               options={optionsObject}
-              field="name"
               value={value2}
+              field="name"
+              sortingKey="id"
               onChange={(event, value) => {
                 setValue2(value);
               }}
@@ -133,7 +145,7 @@ function App() {
 
         <div className="om-container om-mx-auto om-px-4 om-space-y-8">
           <div className="om-w-full">
-            <span>Omega Buttons</span>
+            <span className="om-bg-gray-300 om-p-1">Omega Buttons</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
             <span>Style 1: Rounded</span>
