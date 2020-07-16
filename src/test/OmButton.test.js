@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import OmButton from '../@omega/components/button/OmegaButton';
+import OmButton from '../component/OmButton';
 
 describe('OmButton Component', () => {
     it('it should render a button', () => {
