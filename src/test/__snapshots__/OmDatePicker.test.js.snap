@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test Datepicker render 1`] = `
+<div>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+  >
+    <div
+      className="MuiGrid-root om-flex om-flex-row om-items-center MuiGrid-item"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root makeStyles-iconButton-2 MuiButton-contained MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          <span
+            aria-hidden={true}
+            className="material-icons MuiIcon-root makeStyles-icon-3"
+          >
+            today
+          </span>
+        </span>
+      </button>
+      <div
+        className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal"
+        format="dd-MM-yyyy"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline makeStyles-inputContainer-1 MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoFocus={false}
+            className="MuiInputBase-input MuiInput-input"
+            disabled={false}
+            id="datePicker"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="pick a date"
+            readOnly={true}
+            required={false}
+            type="text"
+            value=""
+          />
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test Timepicker render 1`] = `
+<div>
+  <div
+    className="MuiGrid-root MuiGrid-container"
+  >
+    <div
+      className="MuiGrid-root om-flex om-flex-row om-items-center MuiGrid-item"
+    >
+      <button
+        className="MuiButtonBase-root MuiButton-root makeStyles-iconButton-2 MuiButton-contained MuiButton-containedPrimary"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        <span
+          className="MuiButton-label"
+        >
+          <span
+            aria-hidden={true}
+            className="material-icons MuiIcon-root makeStyles-icon-3"
+          >
+            schedule
+          </span>
+        </span>
+        <span
+          className="MuiTouchRipple-root"
+        />
+      </button>
+      <div
+        className="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal"
+        format="HH:mm"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+      >
+        <div
+          className="MuiInputBase-root MuiInput-root MuiInput-underline makeStyles-inputContainer-1 MuiInputBase-formControl MuiInput-formControl"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoFocus={false}
+            className="MuiInputBase-input MuiInput-input"
+            disabled={false}
+            id="timePicker"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="pick a time"
+            readOnly={true}
+            required={false}
+            type="text"
+            value=""
+          />
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+`;
