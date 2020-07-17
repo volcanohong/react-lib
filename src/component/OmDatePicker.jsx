@@ -62,6 +62,7 @@ function OmDatePicker(props) {
                                 }
                                 <DatePicker
                                     margin="normal"
+                                    id={props.id}
                                     format={props.dateformat}
                                     value={selectedDate}
                                     onChange={(date) => handleDateChange(date)}
@@ -91,6 +92,7 @@ function OmDatePicker(props) {
                                 }
                                 <TimePicker
                                     margin="normal"
+                                    id={props.id}
                                     value={selectedDate}
                                     format={props.timeformat}
                                     onChange={(date) => handleDateChange(date)}
@@ -116,6 +118,7 @@ function OmDatePicker(props) {
 }
 
 OmDatePicker.propTypes = {
+    id: PropTypes.string,
     date: PropTypes.object,
     variant: PropTypes.string,
     prefixicon: PropTypes.bool,
