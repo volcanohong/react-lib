@@ -42,8 +42,8 @@ function App() {
 
   const [value1, setValue1] = React.useState(optionsArray[0]);
   const [value2, setValue2] = React.useState(null);
-  const [value3, setValue3] = React.useState(optionsArray.slice(6));
-  const [value4, setValue4] = React.useState([]);
+  const [value3, setValue3] = React.useState(optionsArray.slice(6)); //optionsArray.slice(6)
+  const [value4, setValue4] = React.useState(optionsObject.slice(3)); //optionsObject.slice(3);
 
   const [checked, setChecked] = React.useState(true);
 
@@ -62,24 +62,23 @@ function App() {
             <span className="om-bg-gray-300 om-p-1">Omega Multi-Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmMultiSelect lable="Lable: Select" options={optionsObject} field='name'></OmMultiSelect>
+            <OmMultiSelect lable="Lable: Select" options={optionsObject} field='name' value={[]} onChange={(event, values) => { }}></OmMultiSelect>
           </div>
-          <div className="om-flex om-flex-row om-space-x-6">
-            <OmMultiSelect lable="Lable: Select" options={optionsArray} showTags={false}></OmMultiSelect>
+          <div className="om-flex om-flex-row om-space-x-3">
+            <OmMultiSelect lable="Lable: Select" options={optionsArray} showTags={false} value={[]} onChange={(event, values) => { }}></OmMultiSelect>
           </div>
-          <div className="om-flex om-flex-row om-space-x-6">
+          <div className="om-flex om-flex-row om-space-x-3">
             <OmMultiSelect lable="Lable: Select" options={optionsArray} value={value3}
               onChange={(event, values) => {
                 setValue3(values);
                 console.log(values);
-              }}
-              showTags={false}></OmMultiSelect>
+              }}></OmMultiSelect>
           </div><div>{`Selected value: ${value3 ? `${value3}` : 'null'}`}</div>
-          <div className="om-flex om-flex-row om-space-x-6">
-            <OmMultiSelect lable="Lable: Select" options={optionsObject} value={value4} field='name'
+          <div className="om-flex om-flex-row om-space-x-3">
+            <OmMultiSelect options={optionsObject} value={value4} field='name'
               onChange={(event, values) => {
                 setValue4(values);
-                // console.log(values);
+                console.log(values);
               }} showTags={false}></OmMultiSelect>
           </div><div>{`Selected value: ${value4 ? `${value4}` : 'null'}`}</div>
         </div>

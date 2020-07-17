@@ -6,10 +6,6 @@ import Autocomplete, { createFilterOptions } from '@material-ui/lab/Autocomplete
 import Chip from '@material-ui/core/Chip';
 import OmCheckbox from './OmCheckbox';
 
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import { Checkbox } from "@material-ui/core";
-
 const useStyles = makeStyles({
   root: {
     '&:focus': {
@@ -29,16 +25,16 @@ function OmMultiSelect(props) {
     color: 'grey'
   };
 
-  const { className, color, lable, options, width, field, placeholder, limitTags, showTags, onChange, ...others } = props;
+  const { className, color, lable, options, width, field, placeholder, limitTags, showTags, onChange, value, ...others } = props;
   const selectAllLabel = 'Select All';
   const [selectedOptions, setSelectedOptions] = useState(props.value ? props.value : []);
+
   const allSelected = options.length === selectedOptions?.length;
-  const handleSelectAll = isSelected => {
-    setSelectedOptions(isSelected ? options : []);
+  const handleSelectAll = isAllSelected => {
+    setSelectedOptions(isAllSelected ? options : []);
   };
 
   const handleToggleSelectAll = () => {
-    console.log(allSelected);
     handleSelectAll && handleSelectAll(!allSelected);
   };
 
@@ -47,10 +43,7 @@ function OmMultiSelect(props) {
   };
   //array of objects can cause unmatch of value and option, which generates lots of warnings
   const handleObjectMatch = (opt, val) => {
-    if (field) {
-      return opt[field] === val[field];
-    }
-    return opt === val;
+    return field ? opt[field] === val[field] : opt === val;
   };
 
   const handleRenderTags = showTags ? (values, getTagProps) => {
@@ -59,30 +52,25 @@ function OmMultiSelect(props) {
     ));
   } : (values, getTagProps) => {
     if (values.length <= limitTags) {
-      let tags = values.map((opt, idx) => (
-        getOptLabel(opt)
-      ));
+      let tags = values.map((opt, idx) => getOptLabel(opt));
       return intersep(tags, ", ");
     }
     return values.length + ' Selected';
   };
 
-  const handleChange = (event, selectedOptions, reason) => {
+  const handleChange = (event, selectedOpts, reason) => {
     if (reason === "select-option" || reason === "remove-option") {
-      if (selectedOptions.find(opt => getOptLabel(opt) === selectAllLabel)) {
-        console.log('1 sel all');
+      if (selectedOpts.find(opt => getOptLabel(opt) === selectAllLabel)) {
         handleToggleSelectAll();
         let result = options.filter(opt => getOptLabel(opt) !== selectAllLabel);
-        // return onChange(result);
-        // return result;
+        return onChange(event, !allSelected ? result : []);
       } else {
-        console.log('2 sel partial');
-        setSelectedOptions(selectedOptions);
-        // return onChange(selectedOptions);
-        // return selectedOptions;
+        setSelectedOptions(selectedOpts);
+        return onChange(event, selectedOpts);
       }
     } else if (reason === "clear") {
       setSelectedOptions([]);
+      return onChange(event, []);
     }
   };
 
@@ -92,8 +80,6 @@ function OmMultiSelect(props) {
       <React.Fragment>
         <OmCheckbox
           color={color}
-          // icon={<CheckBoxOutlineBlankIcon fontSize="small" />}
-          // checkedIcon={<CheckBoxIcon fontSize="small" />}
           checked={selected}
           {...selectAllProps}
         />
@@ -114,9 +100,9 @@ function OmMultiSelect(props) {
   const filter = createFilterOptions();
   const handleFilterOptions = (opts, params) => {
     const filtered = filter(opts, params);
-    const selectAll = field ? { [field]: selectAllLabel } : selectAllLabel
+    const selectAll = field ? { [field]: selectAllLabel } : selectAllLabel;
     return [selectAll, ...filtered];
-  }
+  };
 
   return (
     <div className={className}>
@@ -126,10 +112,9 @@ function OmMultiSelect(props) {
         limitTags={limitTags}
         onChange={handleChange}
         options={options}
-        // value={value}
         value={selectedOptions}
         getOptionLabel={opt => getOptLabel(opt)}
-        // getOptionSelected={handleObjectMatch}
+        getOptionSelected={handleObjectMatch}
         style={{ width: width }}
         ListboxProps={{
           style: {
@@ -163,7 +148,7 @@ OmMultiSelect.propTypes = {
   className: PropTypes.string,
   color: PropTypes.string,
   options: PropTypes.array,
-  // value: PropTypes.array,
+  value: PropTypes.array,
   field: PropTypes.string,
   width: PropTypes.number,
   limitTags: PropTypes.number,
@@ -174,12 +159,11 @@ OmMultiSelect.propTypes = {
 
 OmMultiSelect.defaultProps = {
   options: [],
-  // value: [],
+  value: [],
   color: 'primary',
   width: 300,
   limitTags: 1,
-  showTags: true,
-  // onChange: () => { }
+  showTags: true
 };
 
 export default React.memo(OmMultiSelect);
