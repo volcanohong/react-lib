@@ -23,7 +23,7 @@ describe('OmegaSingleSelect Component', () => {
         'Option 6'
     ];
 
-    it("it should options ans value", () => {
+    it("it should have options and value", () => {
         const mockedOnChange = jest.fn();
         const select = create(<OmSingleSelect options={mockedOptions} value={mockedOptions[0]} onChange={mockedOnChange} />).root;
         expect(select.props.options).toEqual(mockedOptions);
