@@ -72,13 +72,14 @@ function App() {
               onChange={(event, values) => {
                 setValue3(values);
                 console.log(values);
-              }} showTags={false}></OmMultiSelect>
+              }}
+              showTags={false}></OmMultiSelect>
           </div><div>{`Selected value: ${value3 ? `${value3}` : 'null'}`}</div>
           <div className="om-flex om-flex-row om-space-x-6">
             <OmMultiSelect lable="Lable: Select" options={optionsObject} value={value4} field='name'
               onChange={(event, values) => {
                 setValue4(values);
-                console.log(values);
+                // console.log(values);
               }} showTags={false}></OmMultiSelect>
           </div><div>{`Selected value: ${value4 ? `${value4}` : 'null'}`}</div>
         </div>
