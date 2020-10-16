@@ -163,7 +163,7 @@ OmMultiSelect.defaultProps = {
   color: 'primary',
   width: 300,
   limitTags: 1,
-  showTags: true
+  showTags: false
 };
 
 export default React.memo(OmMultiSelect);
