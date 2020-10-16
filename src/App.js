@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { MuiThemeProvider, unstable_createMuiStrictModeTheme as createMuiTheme } from '@material-ui/core/styles';
 import OmButton from './component/OmButton';
 import OmCheckbox from './component/OmCheckbox';
-import OmSingleSelect from './component/OmSingleSelect';
+import OmSingleSelect from './component/select/OmSingleSelect';
 import OmMultiSelect from './component/OmMultiSelect';
 
 //Warnings in strict mode https://github.com/mui-org/material-ui/issues/13394
@@ -40,7 +40,7 @@ function App() {
     { id: 4, name: 'Option 40' }
   ];
 
-  const [value1, setValue1] = React.useState(optionsArray[0]);
+  const [value1, setValue1] = React.useState(null);
   const [value2, setValue2] = React.useState(null);
   const [value3, setValue3] = React.useState(optionsArray.slice(6)); //optionsArray.slice(6)
   const [value4, setValue4] = React.useState(optionsObject.slice(3)); //optionsObject.slice(3);
@@ -62,7 +62,7 @@ function App() {
             <span className="om-bg-gray-300 om-p-1">Omega Multi-Select</span>
           </div>
           <div className="om-flex om-flex-row om-space-x-6">
-            <OmMultiSelect lable="Lable: Select" options={optionsObject} field='name' value={[]} onChange={(event, values) => { }}></OmMultiSelect>
+            <OmMultiSelect lable="Lable: Select" placeholder='placeholder' options={optionsObject} field='name' value={[]} onChange={(event, values) => { }}></OmMultiSelect>
           </div>
           <div className="om-flex om-flex-row om-space-x-3">
             <OmMultiSelect lable="Lable: Select" options={optionsArray} showTags={false} value={[]} onChange={(event, values) => { }}></OmMultiSelect>
@@ -80,7 +80,7 @@ function App() {
                 setValue4(values);
                 console.log(values);
               }} showTags={false}></OmMultiSelect>
-          </div><div>{`Selected value: ${value4 ? `${value4}` : 'null'}`}</div>
+          </div><div>{`Selected value: ${value4 ? `${JSON.stringify(value4)}` : 'null'}`}</div>
         </div>
 
         <div className="om-flex om-flex-row om-my-20">
@@ -116,6 +116,7 @@ function App() {
               onChange={(event, value) => {
                 setValue1(value);
               }}
+              width={250}
             >
             </OmSingleSelect>
             <div>{`Selected value: ${value1 ? `${value1}` : 'null'}`}</div>
@@ -131,6 +132,7 @@ function App() {
                 setValue2(value);
               }}
               placeholder="Placeholder"
+              width={250}
             >
             </OmSingleSelect>
             <div>{`Selected object: ${value2 ? `${JSON.stringify(value2)}` : 'null'}`}</div>

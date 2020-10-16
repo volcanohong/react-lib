@@ -12,11 +12,11 @@ const useStyles = makeStyles({
   }
 });
 
-function OmSingleSelect(props) {
+function OmegaSingleSelect(props) {
   const classes = useStyles();
   const { className, lable, options, value, sortingKey, field, width, placeholder, ...others } = props;
-  // const defValue = value ? value : getDefValue(options, sortingKey);
-  const defValue = value;
+  const defValue = value ? value : getDefValue(options, sortingKey);
+  // const defValue = value;
   //Note: array of objects can cause unmatch between value and option, and show a lot of warnings
   const handleObjectMatch = (opt, val) => {
     if (field) {
@@ -74,7 +74,7 @@ function getDefValue(options, key) {
   return options[0];
 }
 
-OmSingleSelect.propTypes = {
+OmegaSingleSelect.propTypes = {
   lable: PropTypes.string,
   placeholder: PropTypes.string,
   className: PropTypes.string,
@@ -85,9 +85,9 @@ OmSingleSelect.propTypes = {
   diabled: PropTypes.bool
 };
 
-OmSingleSelect.defaultProps = {
+OmegaSingleSelect.defaultProps = {
   options: [],
   width: 200
 };
 
-export default React.memo(OmSingleSelect);
+export default React.memo(OmegaSingleSelect);
